@@ -1,9 +1,13 @@
-.plus-minus {
+.parent {
     cursor: pointer;
-    font-size: 12px;
-    color: #a8a8a8;
+    color: #337ab7;
 }
-
+.parent, #tree-table .fa-file {
+    font-size: 16px;
+}
+#tree-table .fa-file {
+    color: #635050;
+}
 #tree-table table {
     width: 100%;
 }

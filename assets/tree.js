@@ -1,26 +1,26 @@
 $(function () {
     var div = $('#tree-table');
-    div.on('click', '.plus-minus', function () {
+    div.on('click', '.fa-folder-open, .fa-folder', function () {
         var attrClass, action;
         var level = $(this).parents('tr').data('level');
-        if ($(this).hasClass('fa-minus')) {
-            attrClass = 'fa fa-plus plus-minus';
+        if ($(this).hasClass('fa-folder-open')) {
+            attrClass = 'fa fa-folder parent';
             action = 'hide';
         } else {
-            attrClass = 'fa fa-minus plus-minus';
+            attrClass = 'fa fa-folder-open parent';
             action = 'show';
         }
         $(this).attr('class', attrClass);
         $(this).parents('tr').nextAll('tr').each(function () {
             if ($(this).hasClass('hide-show') && level < $(this).data('level')) {
-                var td = $(this).find('.plus-minus');
-                if (td.length === 1) {
-                    td.attr('class', attrClass);
+                var parent = $(this).find('.parent');
+                if (parent.length === 1) {
+                    parent.attr('class', attrClass);
                 }
                 if (action === 'hide') {
-                    $(this).hide(500)
+                    $(this).hide()
                 } else {
-                    $(this).show(500)
+                    $(this).show()
                 }
             } else {
                 return false;
@@ -63,7 +63,6 @@ $(function () {
         }
         return false;
     }
-
     $('.delete-item-tree').click(function (e) {
         e.preventDefault();
         if (confirm('Вы уверены?')) {

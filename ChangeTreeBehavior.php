@@ -60,8 +60,13 @@ class ChangeTreeBehavior extends Behavior
         $parents = $root->children()->andWhere([$nameFieldForType => $node->$nameFieldForType])->all();
         array_unshift($parents, $root);
 
-        $childs = $node->children()->indexBy($node->primaryKey)->all();
         $parent = $node->parents(1)->one();
+
+        $childs = [];
+
+        foreach ($node->children()->all() as $item) {
+            $childs[$item->primaryKey] = $item;
+        }
 
         $result['parent_id'] = $parent->primaryKey;
 
@@ -73,8 +78,10 @@ class ChangeTreeBehavior extends Behavior
                 unset($parents[$key]);
             }
         }
+
         $parents[0] = $this->setRootName($parents[0]);
         $result['parents'] = $parents;
+
         return $result;
     }
 

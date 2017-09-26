@@ -12,6 +12,9 @@ class GetTreeWidget extends Widget
         'update' => 'pencil-square-o',
         'create' => 'plus',
         'delete' => 'trash-o',
+        'leaf' => 'file',
+        'folder_open' => 'folder-open parent',
+        'folder' => 'folder parent',
     ];
 
     public function init () {
@@ -37,12 +40,14 @@ class GetTreeWidget extends Widget
         if (!empty($this->options['faUpdate'])) {
             $this->faIcons['update'] = $this->options['faUpdate'];
         }
+
         if (!empty($this->options['faCreate'])) {
-            $this->faIcons['create'] = $this->options['faCreate'];;
+            $this->faIcons['create'] = $this->options['faCreate'];
         }
         if (!empty($this->options['faDelete'])) {
-            $this->faIcons['delete'] = $this->options['faDelete'];;
+            $this->faIcons['delete'] = $this->options['faDelete'];
         }
+
         foreach ($this->faIcons as $key => $item) {
             $this->faIcons[$key] = Html::tag('i', '', ['class' => 'fa fa-' . $item]);
         }
@@ -79,9 +84,11 @@ class GetTreeWidget extends Widget
 
             $td2 = Html::tag('td', $urlUpdate . $urlDelete . $urlAdd, ['style' => 'width: 100px;']);
 
+            $span = $this->faIcons['leaf'] . ' ';
+
             if ((!(empty($data[$key + 1])) && $data[$key + 1]['depth'] == $item->depth && $item->depth == 1) ||( $item->depth == 1 && empty($data[$key + 1])) ) {
                 $i = 0;
-                $td1 =  Html::tag('td', $item->$fieldForTitleItem);
+                $td1 =  Html::tag('td', $span . $item->$fieldForTitleItem);
                 $str .= Html::tag('tr', $td1 . $td2, $options);
             }
             if ((!(empty($data[$key + 1])) && $data[$key + 1]['depth'] > $item->depth) || $i > 0) {
@@ -89,11 +96,11 @@ class GetTreeWidget extends Widget
                 $options_td = [];
                 $options['class'] = 'hide-show';
                 if ($item->depth > 1) {
-                    $options_td = ['style' => 'padding-left: ' . $item->depth * 10 . 'px;'];
+                    $options_td = ['style' => 'padding-left: ' . $item->depth * 20 . 'px;'];
                 }
-                $span = '';
+
                 if (!(empty($data[$key + 1])) && $data[$key + 1]['depth'] > $item->depth) {
-                    $span = Html::tag('i', '', ['class' => 'fa fa-minus plus-minus']) . ' ';
+                    $span = $this->faIcons['folder_open'] . ' ';
                 }
                 $td1 = Html::tag('td', $span . $item->$fieldForTitleItem, $options_td);
                 $str .= Html::tag('tr', $td1 . $td2, $options);

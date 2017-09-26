@@ -1,7 +1,6 @@
 <?php
 namespace ale10257\ext;
 
-
 use yii\web\AssetBundle;
 
 class TreeAssets extends AssetBundle
