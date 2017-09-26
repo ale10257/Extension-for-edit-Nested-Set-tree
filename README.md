@@ -32,15 +32,15 @@ Capabilities
 
 **Example table before move**
 
-![before move](http://kulagin-alex.ru/no-delete-images/tree1.png)
+![before move](http://kulagin-alex.ru/no-delete-images/tree1_.png)
 
 **Move**
 
-![move](http://kulagin-alex.ru/no-delete-images/tree2.png)
+![move](http://kulagin-alex.ru/no-delete-images/tree2_.png)
 
 **After move**
 
-![after move](http://kulagin-alex.ru/no-delete-images/tree3.png)
+![after move](http://kulagin-alex.ru/no-delete-images/tree3_.png)
 
 ***Important***
 ------
