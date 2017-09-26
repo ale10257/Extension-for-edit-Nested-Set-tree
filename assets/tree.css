@@ -1,0 +1,15 @@
+.plus-minus {
+    cursor: pointer;
+    font-size: 12px;
+    color: #a8a8a8;
+}
+
+#tree-table table {
+    width: 100%;
+}
+
+#tree-table table td .fa.fa-trash-o, #tree-table table td .fa.fa-pencil-square-o {
+    display: inline-block;
+    padding-right: 10px;
+    font-size: 20px;
+}

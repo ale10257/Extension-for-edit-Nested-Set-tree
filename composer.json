@@ -1,0 +1,27 @@
+{
+  "name": "ale10257/yii2-ext-for-work-nested-set",
+  "description": "Include widget and behavior for edit  Nested Set tree",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    " nested set",
+    " dnd"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alexey Kulagin",
+      "email": "proctoleha@gmail.com"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": "~2.0.0",
+    "creocoder/yii2-nested-sets": "dev-master",
+    "rmrevin/yii2-fontawesome": "~2.17"
+  },
+  "autoload": {
+    "psr-4": {
+      "ale10257\\ext\\": ""
+    }
+  }
+}
