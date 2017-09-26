@@ -59,11 +59,11 @@ and determine the constant SITE_ROOT_NAME and behaviors
 use creocoder\nestedsets\NestedSetsBehavior;
 use ale10257\ext\ChangeTreeBehavior;
 
-...
+//...
 
 const SITE_ROOT_NAME = 'My_SITE_ROOT';
 
-...
+//...
 
     public function behaviors()
     {
@@ -79,20 +79,20 @@ const SITE_ROOT_NAME = 'My_SITE_ROOT';
         ];
     }
       
-...
+//...
 ?>
 ```
 **View index.php for Category**
 
 ```php
-...
+//...
     <?php if($data) : ?>
         <div class="category-index">
             <h1><?= Html::encode($this->title) ?></h1>
                 <?= $this->render('tree', ['data' => $data]) ?>
         </div>
     <?php endif ?>
-...
+//...
 ```
 
 **View tree.php**
@@ -120,7 +120,8 @@ echo GetTreeWidget::widget([
 **Controller**
 ```php
 <?php
-...
+
+//...
     
     public function actionIndex()
     {
@@ -129,7 +130,7 @@ echo GetTreeWidget::widget([
             'data' => $category->getTree(),
         ]);
     }
-...  
+//...  
     //accepts the ajax request  
     public function actionUpdateTree($numTree = 1)
     {
@@ -140,6 +141,6 @@ echo GetTreeWidget::widget([
         }
         return Yii::$app->request->referrer;
     }    
-...
+//...
 ?>
 ```
