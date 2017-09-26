@@ -17,7 +17,8 @@
   "require": {
     "yiisoft/yii2": "~2.0.0",
     "creocoder/yii2-nested-sets": "dev-master",
-    "rmrevin/yii2-fontawesome": "~2.17"
+    "rmrevin/yii2-fontawesome": "~2.17",
+    "ale10257/yii2-ext-for-work-nested-set": "dev-master"
   },
   "autoload": {
     "psr-4": {
