@@ -17,3 +17,7 @@
     padding-right: 10px;
     font-size: 20px;
 }
+
+#tree-table tr:hover {
+    background-color: #ededed;
+}
