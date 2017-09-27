@@ -107,7 +107,7 @@ echo GetTreeWidget::widget([
         'options' => [
             'data' => $data,
             // action for ajax request for edit tree
-            'urlChangeTree' => Url::to(['/admin/category/update-tree', 'numTree' => 1]), 
+            'urlChangeTree' => Url::to(['/admin/category/update-tree']), 
             'urlUpdateTree' => Url::to(['/admin/category/update']),
             'urlDeleteTree' => Url::to(['/admin/category/delete']),
             'urlAddItem' => Url::to(['/admin/category/create']),
@@ -132,12 +132,12 @@ echo GetTreeWidget::widget([
     }
 //...  
     //accepts the ajax request  
-    public function actionUpdateTree($numTree = 1)
+    public function actionUpdateTree()
     {
         if (Yii::$app->request->isAjax) {
             $model = new Category();
             $post = Yii::$app->request->post();
-            return $this->renderPartial('tree', ['data' => $model->updateTree($post, $numTree)]);
+            return $this->renderPartial('tree', ['data' => $model->updateTree($post)]);
         }
         return Yii::$app->request->referrer;
     }    
