@@ -101,7 +101,6 @@ const SITE_ROOT_NAME = 'My_SITE_ROOT';
 use ale10257\ext\GetTreeWidget;
 use yii\helpers\Url;
 //Number tree in your Nested Set tree
-$numTree = 1;
 
 echo GetTreeWidget::widget([
         'options' => [
