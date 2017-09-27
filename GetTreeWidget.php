@@ -91,10 +91,14 @@ class GetTreeWidget extends Widget
                 $td1 =  Html::tag('td', $span . $item->$fieldForTitleItem);
                 $str .= Html::tag('tr', $td1 . $td2, $options);
             }
+
             if ((!(empty($data[$key + 1])) && $data[$key + 1]['depth'] > $item->depth) || $i > 0) {
+
                 $i++;
                 $options_td = [];
-                $options['class'] = 'hide-show';
+
+                $options['class'] = $item->depth > 1 ? 'hide-show' : '';
+
                 if ($item->depth > 1) {
                     $options_td = ['style' => 'padding-left: ' . $item->depth * 20 . 'px;'];
                 }

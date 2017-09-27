@@ -7,23 +7,25 @@ use yii\db\BaseActiveRecord;
 class ChangeTreeBehavior extends Behavior
 {
     public $rootSite;
-    public $rootName;
 
-    public function updateTree($post, $numTree = 1)
+    /**
+     * @param array $post
+     * @return mixed
+     */
+    public function updateTree($post)
     {
         /* @var $owner BaseActiveRecord */
         $owner = $this->owner;
-        $one = $owner->find()->where(['tree' => $numTree, 'id' => $post['first']])->one();
-        $two = $owner->find()->where(['tree' => $numTree, 'id' => $post['two']])->one();
-
-        $parent_one = $one->parents(1)->one();
-        $parent_two = $two->parents(1)->one();
-
-        if ($parent_one->id == $parent_two->id) {
-            if ($post['action'] == 'before') $one->insertBefore($two);
-            if ($post['action'] == 'after') $one->insertAfter($two);
+        $one = $owner->find()->where(['id' => $post['first']])->one();
+        $two = $owner->find()->where(['id' => $post['two']])->one();
+        if ($one && $two) {
+            $parent_one = $one->parents(1)->one();
+            $parent_two = $two->parents(1)->one();
+            if ($parent_one->id == $parent_two->id) {
+                if ($post['action'] == 'before') $one->insertBefore($two);
+                if ($post['action'] == 'after') $one->insertAfter($two);
+            }
         }
-
         return $this->getTree();
     }
 
@@ -87,9 +89,14 @@ class ChangeTreeBehavior extends Behavior
 
     private function setRootName($parent)
     {
-        if ($parent->name == $this->rootSite) {
-            $parent->name = $this->rootName;
+        /* @var $owner BaseActiveRecord */
+        $owner = $this->owner;
+        if (!empty($owner->root_name)) {
+            if ($parent->name == $this->rootSite) {
+                $parent->name = $owner->root_name;
+            }
         }
+
         return $parent;
     }
 

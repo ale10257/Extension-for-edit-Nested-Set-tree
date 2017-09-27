@@ -31,7 +31,8 @@ $(function () {
         $('.sortable tbody').sortable({
             containment: "parent",
             cursor: "move",
-            stop: stopHandler
+            stop: stopHandler,
+            delay : 200
         });
     }
     init();
