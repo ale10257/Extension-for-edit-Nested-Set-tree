@@ -1,6 +1,6 @@
 $(function () {
     var div = $('#tree-table');
-    div.on('click', '.fa-folder-open, .fa-folder', function () {
+    $(document).on('click', '.fa-folder-open, .fa-folder', function () {
         var attrClass, action;
         var level = $(this).parents('tr').data('level');
         if ($(this).hasClass('fa-folder-open')) {
@@ -64,7 +64,8 @@ $(function () {
         }
         return false;
     }
-    $('.delete-item-tree').click(function (e) {
+
+    $(document).on('click', '.delete-item-tree', function (e) {
         e.preventDefault();
         if (confirm('Вы уверены?')) {
             $.post(this.href, function () {
@@ -72,4 +73,5 @@ $(function () {
             });
         }
     });
+
 });

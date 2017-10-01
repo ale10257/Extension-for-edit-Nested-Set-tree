@@ -1,7 +1,9 @@
 <?php
 namespace ale10257\ext;
 
+use creocoder\nestedsets\NestedSetsBehavior;
 use yii\base\Behavior;
+use yii\db\ActiveRecord;
 use yii\db\BaseActiveRecord;
 
 class ChangeTreeBehavior extends Behavior
@@ -18,10 +20,17 @@ class ChangeTreeBehavior extends Behavior
         $owner = $this->owner;
         $one = $owner->find()->where(['id' => $post['first']])->one();
         $two = $owner->find()->where(['id' => $post['two']])->one();
+        /**
+         * @var $one NestedSetsBehavior
+         * @var $two NestedSetsBehavior
+         */
         if ($one && $two) {
             $parent_one = $one->parents(1)->one();
             $parent_two = $two->parents(1)->one();
             if ($parent_one->id == $parent_two->id) {
+                /**
+                 * @var $two ActiveRecord
+                 */
                 if ($post['action'] == 'before') $one->insertBefore($two);
                 if ($post['action'] == 'after') $one->insertAfter($two);
             }
@@ -29,10 +38,18 @@ class ChangeTreeBehavior extends Behavior
         return $this->getTree();
     }
 
+    /**
+     * @return bool
+     */
     public function getTree()
     {
-        $root = $this->getRoot();
-        return $root->children()->all();
+        /**
+         * @var $root NestedSetsBehavior
+         */
+        if ($root = $this->getRoot()) {
+            return $root->children()->all();
+        }
+        return false;
     }
 
     public function createItem($parent)
@@ -56,6 +73,9 @@ class ChangeTreeBehavior extends Behavior
         /* @var $node BaseActiveRecord */
         /* @var $item BaseActiveRecord */
         /* @var $parent BaseActiveRecord */
+        /* @var $root NestedSetsBehavior */
+        /* @var $parent NestedSetsBehavior */
+        /* @var $node NestedSetsBehavior */
 
         $root = $this->getRoot();
 
@@ -87,6 +107,12 @@ class ChangeTreeBehavior extends Behavior
         return $result;
     }
 
+    public function getRoot (){
+        /* @var $owner BaseActiveRecord */
+        $owner = $this->owner;
+        return $owner->findOne(['name' => $this->rootSite]);
+    }
+
     private function setRootName($parent)
     {
         /* @var $owner BaseActiveRecord */
@@ -100,9 +126,4 @@ class ChangeTreeBehavior extends Behavior
         return $parent;
     }
 
-    private function getRoot (){
-        /* @var $owner BaseActiveRecord */
-        $owner = $this->owner;
-        return $owner->findOne(['name' => $this->rootSite]);
-    }
 }
