@@ -51,6 +51,20 @@ class ChangeTreeBehavior extends Behavior
         }
         return false;
     }
+    
+        /**
+     * @return bool
+     */
+    public function getTreeAsArray()
+    {
+        /**
+         * @var $root NestedSetsBehavior
+         */
+        if ($root = $this->getRoot()) {
+            return $root->children()->asArray()->all();
+        }
+        return false;
+    }
 
     public function createItem($parent)
     {
