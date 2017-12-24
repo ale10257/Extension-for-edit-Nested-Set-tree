@@ -52,9 +52,9 @@ class ChangeTreeBehavior extends Behavior
         return false;
     }
     
-        /**
-     * @return bool
-     */
+     /**
+      * @return bool
+      */
     public function getTreeAsArray()
     {
         /**
