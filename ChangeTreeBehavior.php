@@ -126,6 +126,12 @@ class ChangeTreeBehavior extends Behavior
         $owner = $this->owner;
         return $owner->findOne(['name' => $this->rootSite]);
     }
+    
+    public function checkRoot (){
+        /* @var $owner BaseActiveRecord */
+        $owner = $this->owner;
+        return $owner->find()->where(['name' => $this->rootSite])->count();
+    }    
 
     private function setRootName($parent)
     {
