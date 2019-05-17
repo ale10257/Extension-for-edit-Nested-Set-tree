@@ -62,6 +62,16 @@ $(function () {
             newTree(obj);
             return true;
         }
+        if (level < prev.data('level') || level > prev.data('level')) {
+            let open = +ui.item.find('.fa-folder-open').length;
+            let folder = +ui.item.find('.fa-folder').length;
+            if (open === 0 && folder === 0) {
+                obj['two'] = prev.data('id');
+                obj['action'] = 'after';
+                newTree(obj);
+                return true;
+            }
+        }        
         return false;
     }
 
