@@ -27,13 +27,13 @@ class ChangeTreeBehavior extends Behavior
         if ($one && $two) {
             $parent_one = $one->parents(1)->one();
             $parent_two = $two->parents(1)->one();
-            if ($parent_one->id == $parent_two->id) {
+            //if ($parent_one->id == $parent_two->id) {
                 /**
                  * @var $two ActiveRecord
                  */
                 if ($post['action'] == 'before') $one->insertBefore($two);
                 if ($post['action'] == 'after') $one->insertAfter($two);
-            }
+            //}
         }
         return $this->getTree();
     }
